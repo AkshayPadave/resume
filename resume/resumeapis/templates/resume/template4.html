@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'resume_documents/css/template4.css' %}">
+    <title>{{ name }}'s Resume</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .resume {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .summary,
+        .experience,
+        .education,
+        .skills {
+            margin-bottom: 30px;
+        }
+        .job,
+        .degree {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <div class="header">
+            <h1>{{ name }}</h1>
+            <p>Email: {{ email }} | Phone: {{ phone }} | LinkedIn: <a href="https://{{ linkedin }}">{{ linkedin }}</a></p>
+        </div>
+        <div class="summary">
+            <h2>Summary</h2>
+            <p>{{ summary }}</p>
+        </div>
+        <div class="experience">
+            <h2>Experience</h2>
+            {% for exp in experience %}
+            <div class="job">
+                <h3>{{ exp.job_title }}</h3>
+                <p>{{ exp.company_name }} | {{ exp.location }} | {{ exp.start_date }} - {{ exp.end_date }}</p>
+                <ul>
+                    {% for resp in exp.responsibilities %}
+                    <li>{{ resp }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+            <!-- Filler content to fill the page -->
+            <div class="job">
+                <h3>Additional Experience</h3>
+                <p>Company XYZ | Location | Jan 2020 - Dec 2020</p>
+                <ul>
+                    <li>Responsibility 1</li>
+                    <li>Responsibility 2</li>
+                </ul>
+            </div>
+        </div>
+        <div class="education">
+            <h2>Education</h2>
+            {% for edu in education %}
+            <div class="degree">
+                <h3>{{ edu.degree }}</h3>
+                <p>{{ edu.university }} | {{ edu.location }} | {{ edu.graduation_year }}</p>
+                <p>{{ edu.achievements }}</p>
+            </div>
+            {% endfor %}
+            <!-- Filler content to fill the page -->
+            <div class="degree">
+                <h3>Additional Education</h3>
+                <p>Degree 2 | University Name | Location | Graduation Year</p>
+                <p>Description of coursework or achievements.</p>
+            </div>
+        </div>
+        <div class="skills">
+            <h2>Skills</h2>
+            <ul>
+                {% for skill in skills %}
+                <li>{{ skill }}</li>
+                {% endfor %}
+                <!-- Filler content to fill the page -->
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

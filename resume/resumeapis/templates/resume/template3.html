@@ -1,0 +1,242 @@
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script src="https://cdn.tailwindcss.com">
+</script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          clifford: '#da373d',
+        }
+      }
+    }
+  }
+</script>
+<style>
+  @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+</style>
+<div x-data="resume" class="pt-10 w-screen text-sm">
+  <div class="grid grid-cols-2 m-auto px-6">
+    <div>
+      <h1 class="text-4xl font-medium">Puneet Sharma</h1>
+      <p class="text-gray-800">Full Stack Web Developer</p>
+    </div>
+    <div class="flex flex-col font-medium justify-end text-xs text-gray-800">
+      <p class="flex ml-auto my-2">
+        <span>
+          +91 xxxxxx64x27
+        </span>
+        <span class="pl-2">
+          <i class="w-6 bi bi-phone"></i>
+        </span>
+      </p>
+      <p class="flex ml-auto my-2">
+        <a href="https://puneetxp.github.io/">
+          <span>
+            puneetxp.github.io
+          </span>
+          <span class="pl-2">
+            <i class="w-6 bi bi-browser-firefox"></i>
+          </span>
+        </a>
+      </p>
+      <p class="flex ml-auto my-2">
+        <a href="https://github.com/puneetxp/">
+          <span>
+            github.com/puneetxp
+          </span>
+          <span class="pl-2">
+            <i class="w-6 bi bi-github"></i>
+          </span>
+        </a>
+      </p>
+
+      <p class="flex ml-auto my-2">
+        <span>
+          puneetsharma9@hotmail.com
+        </span>
+        <span class="pl-2">
+          <i class="w-6 bi bi-envelope"></i>
+        </span>
+      </p>
+      <p class="flex ml-auto my-2">
+        <a href="https://stackoverflow.com/users/7609791">
+          <span>
+            stackoverflow.com/users/7609791
+          </span>
+          <span class="pl-2">
+            <i class="w-6 bi bi-stack"></i>
+          </span>
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 m-auto gap-6 pt-4">
+    <div>
+      <div>
+        <h2 class="pl-6 px-4 text-xl uppercase font-bold">
+          WORK EXPERIENCE
+        </h2>
+        <hr class="border-t-2 border-black duration-500 my-1">
+      </div>
+      <div class="d-grid px-2 pl-6">
+        <template x-for="work in works">
+          <div class="my-2">
+            <div class="text-base font-medium">
+              <span x-text="work.type"></span>
+              <template x-if="work.name">
+                <span x-text="'('+work.name+')'" class="text-sm text-gray-800"></span>
+              </template>
+              <template x-if="work.link">
+                <a :href="work.link">
+                  <i class="w-6 bi bi-link-45deg"></i> </a>
+              </template>
+            </div>
+
+            <template x-if="work.start">
+              <span class="text-sm text-gray-800" x-text="(work.start && (work.start ?work.start : '')) + ' - ' + (work.end || present) "></span>
+            </template>
+            <ul class="list-disc pl-3 text-gray-800">
+              <template x-for="desc in work.info">
+                <li class="text-xs">
+                  <span x-text="desc"></span>
+                </li>
+              </template>
+            </ul>
+          </div>
+        </template>
+      </div>
+      <div class="pt-4">
+        <h2 class="pl-6 px-4 text-xl uppercase font-bold">
+          Projects
+        </h2>
+        <hr class="border-t-2 border-black duration-500 my-1">
+      </div>
+      <div class="d-grid px-2 pl-6">
+        <template x-for="project in projects">
+          <div class="my-2">
+            <div class="text-base font-medium">
+              <span x-text="project.name"></span>
+              <template x-if="project.type">
+                <span class="text-sm text-gray-800" x-text="'('+project.type+')'"></span>
+              </template>
+              <template x-if="project.date">
+                <span class="text-sm text-gray-800" x-text="'('+project.date+')'"></span>
+              </template>
+              <template x-if="project.link">
+                <a :href="project.link">
+                  <i class="w-6 bi bi-link-45deg"></i> </a>
+              </template>
+            </div>
+            <ul class="list-disc pl-3 text-gray-800">
+              <template x-for="desc in project.info">
+                <li class="text-xs">
+                  <span x-text="desc"></span>
+                </li>
+              </template>
+            </ul>
+          </div>
+        </template>
+      </div>
+    </div>
+    <div>
+      <div>
+        <h2 class="px-4 text-xl uppercase font-bold">
+          LANGUAGE
+        </h2>
+        <hr class="border-t-2 border-black duration-500 mb-2 mt-1">
+      </div>
+      <div class="grid px-2 pl-4">
+        <div class="flex py-2 flex-wrap">
+          <template x-for="language in languages">
+            <span class="p-2 bg-gray-200 m-1 rounded" x-text="language"></span>
+          </template>
+        </div>
+      </div>
+      <div class="mt-4">
+        <h2 class="px-4 text-xl uppercase font-bold">
+          Framework
+        </h2>
+        <hr class="border-t-2 border-black duration-500 mb-2 mt-1">
+      </div>
+      <div class="grid px-2 pl-4">
+        <div class="flex py-2 flex-wrap">
+          <template x-for="framework in frameworks">
+            <span class="p-2 bg-slate-500 text-white m-1 rounded" x-text="framework"></span>
+          </template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('resume', () => ({
+      languages: ["Java", "Kotlin", "JavaScript", "Dart", "HTML/CSS", "C#", "PHP", "My SQL", "Sass", "Python", "Go", "Typescript"],
+      frameworks: ["Laravel", "Angular", "Vuejs", "Solidjs", "Tailwind", "Deno",
+        "Alpinejs", "Astro", "Bootstrap",
+        "Flutter", "Nginx", "Apache", "Vue", "Solidjs", "hmailserver","SEO",
+        "IIS"
+      ],
+      works: [{
+        start: "07/2019",
+        end: "04/2020",
+        type: "Freelancer",
+        info: ["Creating Wordpress and Simple Website"]
+      }, {
+        name: "GigtechService",
+        start: "04/2020",
+        end: "11/2022",
+        type: "Tech Lead Intern",
+        info: ["Train Intern and Building Website in LAMP stack."]
+      }, {
+        start: "11/2022",
+        end: "10/2023",
+        type: "Freelance",
+      }, {
+        name: "Zyvika",
+        start: "10/2023",
+        end: "present",
+        type: "SDE II",
+        info: ["Creating Website and Android Software"]
+      }],
+      projects: [{
+        name: "Eliteonrent",
+        type: "Individual Project",
+        link: "https://eliteonrent.com",
+        info: ["It is a startup which sell electronic appliances on rent."]
+      }, {
+        name: "Ikrent",
+        type: "Individual Project",
+        link: "https://ikrent.com",
+        info: ["It is also a startup which sells Rental electronic applicances on rent."]
+      }, {
+        name: "Intaxing",
+        type: "Individual Project",
+        link: "https://intaxing.com",
+        info: ["It is a organisation website which provides income tax services like GST, ITR TDS and other tax related services."]
+      }, {
+        name: "Shopinfactory",
+        type: "Partial Project",
+        link: "https://shopinfactory.com",
+        info: ["I worked on this website partially. I worked on some features like Recommendation features on check out."]
+      }, {
+        name: "Surajherbals",
+        type: "Partial Project",
+        link: "https://surajherbals.com",
+        info: ["It is a ayurveda product I worked on front end, cart backend process and on product pages."]
+      }, {
+        name: "Intax",
+        date: "02/2023 - Present",
+        link: "https://intax.com",
+        info: ["It is a Billing System But still long to complete"]
+      }, {
+        name: "The Framework",
+        date: "02/2023 - Present",
+        link: "https://surajherbals.com",
+        info: ["It is a ayurveda product I worked on front end, cart backend process and on product pages."]
+      }]
+    }))
+  })
+</script>

@@ -1,0 +1,50 @@
+/* Reset default browser styles */
+html, body, div, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* A4 page size */
+.resume-wrapper {
+    width: 210mm;
+    height: 297mm;
+    margin: auto;
+    padding: 20mm;
+    font-family: Arial, sans-serif;
+}
+
+header h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.contact-info, .education, .experience, .skills {
+    margin-bottom: 20px;
+}
+
+.contact-item h2, .education-item h2, .experience-item h2, .skills h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.contact-item p, .education-item p, .experience-item p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.skills ul {
+    list-style-type: none;
+}
+
+.skills ul li {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
